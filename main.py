@@ -5,19 +5,22 @@ matching_files = []
 errors = []
 
 root = input("Enter the root : ")
-min_size_for_compression = int(input("Enter the miminum size of image to be compressed (IN BYTES) : "))
+min_size_for_compression = None
+
+while min_size_for_compression is None:
+	try:
+		min_size_for_compression = int(input("Enter the miminum size of image to be compressed (IN BYTES) : "))
+	except ValueError:
+		print("Please enter a valid value.")
 
 
 for path, subdirs, files in os.walk(root):
-
     for name in files:
         matching_files.append(os.path.join(path, name))
         print(path, end=' ')
         print(name)
 
 input("\n\nList of all files in the given location obtained. Press enter to start compression : ")
-
-
 
 for image in matching_files:
 	try:
